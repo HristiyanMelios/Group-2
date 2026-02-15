@@ -173,14 +173,6 @@ def test_positive_deposit():
 # - Verify that withdrawing a valid amount correctly decreases the balance.
 # Target Method: withdraw()
 
-# Student 7: Test withdrawal with insufficient funds
-# Test: Withdrawl with insufficient funds
-# Author: Jonah Lewis
-# Date: 2026-02-15
-# Description:  Ensure withdrawal fails when balance is insufficient.
-# - Ensure withdrawal fails when balance is insufficient.
-# Target Method: withdraw()
-
 # ===========================
 # Test: Test Withdrawl With Insufficient Funds
 # Author: Jonah Lewis
