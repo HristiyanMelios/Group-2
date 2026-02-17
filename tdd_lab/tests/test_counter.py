@@ -29,6 +29,12 @@ class TestCounterEndpoints:
         result = client.post('/counters/foo')
         assert result.status_code == status.HTTP_201_CREATED
 
+    def test_invalid_http_method(self, client):
+        """It should return 405 Method Not Allowed for invalid HTTP methods"""
+        result = client.get('/counters/foo')  # GET not allowed for this endpoint
+        assert result.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+        assert result.get_json()["error"] == "Method Not Allowed"
+        
     def test_retrieve_existing_counter(self, client):
         """It should retrieve an existing counter"""
         # Create counter
