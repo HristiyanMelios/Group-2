@@ -15,10 +15,12 @@ import pytest
 from src import app
 from src import status
 
+
 @pytest.fixture()
 def client():
     """Fixture for Flask test client"""
     return app.test_client()
+
 
 @pytest.mark.usefixtures("client")
 class TestCounterEndpoints:
@@ -38,3 +40,10 @@ class TestCounterEndpoints:
         result = client.get('/counters/Rate_MD')
         assert result.status_code == status.HTTP_200_OK
         assert result.json == {'Rate_MD': 0}
+
+def test_delete_nonexistent_counter(client):
+    # attempt to delete a counter that doesn't exist
+    result = client.delete('/counters/nonexistent')
+
+    # should return 404 error
+    assert result.status_code == status.HTTP_404_NOT_FOUND
